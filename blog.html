@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技术博客 · 邹理财</title>
+<meta name="description" content="邹理财的 CSDN 技术文章归档：Python、前端、大模型与 AI 智能体学习笔记，按发布时间倒序排列。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="技术博客 · 邹理财">
+<meta property="og:description" content="Python、前端、大模型与 AI 智能体学习笔记，按发布时间倒序归档。">
+<meta property="og:image" content="images/avatar.jpg">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>(function(){var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches){t="dark";}if(t==="dark"){document.documentElement.setAttribute("data-theme","dark");}})();</script>
+</head>
+<body>
+
+<!-- 顶部滚动进度条 -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+<!-- ================= 顶部导航 ================= -->
+<header class="nav">
+    <div class="nav-inner">
+        <a class="brand" href="index.html">
+            <span class="brand-mark">邹</span>
+            邹理财
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">首页</a>
+            <a href="projects.html">项目</a>
+            <a href="blog.html" class="active">博客</a>
+            <a href="about.html">关于</a>
+        </nav>
+
+        <div class="nav-tools">
+            <button class="icon-btn" id="searchBtn" title="搜索文章" aria-label="搜索">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <button class="icon-btn" id="themeBtn" title="切换深浅色" aria-label="切换主题">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke-linejoin="round"/></svg>
+            </button>
+            <a class="icon-btn" href="https://github.com/print_zlc" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.72.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/>
+                </svg>
+            </a>
+            <a class="icon-btn" href="https://blog.csdn.net/print_zlc" target="_blank" rel="noopener" title="CSDN" aria-label="CSDN">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                    <path d="M4 5h9M4 12h7M4 19h9"/><path d="m15.5 8.5 3 3-3 3"/>
+                </svg>
+            </a>
+            <button class="icon-btn nav-toggle" id="navToggle" aria-label="展开菜单">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                    <path d="M4 7h16M4 12h16M4 17h16"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="page-head">
+        <div class="wrap-narrow">
+            <h1>技术博客</h1>
+            <p>所有文章首发于 CSDN，这里按发布时间<strong>倒序</strong>归档，左侧时间条对应发布时间。</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="wrap-narrow">
+
+            <!-- 标签筛选 -->
+            <div class="filters">
+                <button class="filter-btn active" data-filter="全部">全部</button>
+                <button class="filter-btn" data-filter="Python">Python</button>
+                <button class="filter-btn" data-filter="前端">前端</button>
+                <button class="filter-btn" data-filter="大模型">大模型</button>
+            </div>
+
+            <!-- 左侧时间条 + 文章列表 -->
+            <div class="timeline">
+                <div class="tl-year">2026 年</div>
+
+                <div class="tl-item" data-category="前端">
+                    <span class="tl-date">2026-10-25</span>
+                    <a class="tl-card" href="https://blog.csdn.net/print_zlc/article/details/169063188" target="_blank" rel="noopener">
+                        <h3>【HTML+CSS+JS】前端入门第一周：从标签到九宫格，我把踩过的坑全记下来了</h3>
+                        <p>从 HTML 骨架到 CSS 样式再到 JS 交互：标签语义、选择器、盒模型、Flex/Grid 布局与 DOM 操作，并复盘路径、视口、嵌套等常见坑。</p>
+                        <div class="tl-tags">
+                            <span class="chip">前端</span><span class="chip">HTML</span>
+                            <span class="chip">CSS</span><span class="chip">JavaScript</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="tl-item" data-category="Python">
+                    <span class="tl-date">2026-10-17</span>
+                    <a class="tl-card" href="https://blog.csdn.net/print_zlc/article/details/168247085" target="_blank" rel="noopener">
+                        <h3>【Python】类与对象、大模型 API 调用与 FastAPI 后端开发</h3>
+                        <p>类与对象（封装、继承）、大模型 API 多轮对话与采样参数、FastAPI 的 GET/POST 接口与 Pydantic 校验，最后落地一个网页版 AI 对话小助手。</p>
+                        <div class="tl-tags">
+                            <span class="chip">Python</span><span class="chip">面向对象</span>
+                            <span class="chip">FastAPI</span><span class="chip">大模型 API</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="tl-item" data-category="大模型">
+                    <span class="tl-date">2026-10-11</span>
+                    <a class="tl-card" href="https://blog.csdn.net/print_zlc/article/details/167587743" target="_blank" rel="noopener">
+                        <h3>大模型与 AI 智能体学习笔记：从 API 调用到 Ollama 本地部署</h3>
+                        <p>从智能体的规划与执行机制，到参数、Token、上下文窗口等核心概念；用 API Key 调用通义千问，再用 Ollama 把模型部署到本地。</p>
+                        <div class="tl-tags">
+                            <span class="chip">大模型</span><span class="chip">AI 智能体</span>
+                            <span class="chip">Ollama</span><span class="chip">API</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="tl-item" data-category="Python">
+                    <span class="tl-date">2026-09-27</span>
+                    <a class="tl-card" href="https://blog.csdn.net/print_zlc/article/details/166740018" target="_blank" rel="noopener">
+                        <h3>【Python】数据类型转换、函数与文件操作</h3>
+                        <p>str()/int() 类型转换、split()/join() 字符串处理、函数参数与作用域、值传递与引用传递，以及用 with 语句安全读写文件。</p>
+                        <div class="tl-tags">
+                            <span class="chip">Python</span><span class="chip">函数</span>
+                            <span class="chip">文件操作</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="tl-item" data-category="Python">
+                    <span class="tl-date">2026-09-17</span>
+                    <a class="tl-card" href="https://blog.csdn.net/print_zlc/article/details/165758511" target="_blank" rel="noopener">
+                        <h3>Python AI 应用之路：第三周学习笔记——字符串列表字典大闯关</h3>
+                        <p>字符串索引切片与常用方法、列表增删改查、字典键值操作与遍历，并用一个签到系统把三类数据结构串起来。</p>
+                        <div class="tl-tags">
+                            <span class="chip">Python</span><span class="chip">字符串</span>
+                            <span class="chip">列表</span><span class="chip">字典</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="tl-item" data-category="Python">
+                    <span class="tl-date">2026-09-13</span>
+                    <a class="tl-card" href="https://blog.csdn.net/print_zlc/article/details/165227529" target="_blank" rel="noopener">
+                        <h3>Python AI 应用之路：第二周学习笔记——初识 python 打怪升级</h3>
+                        <p>Python 语言特性、PyCharm 环境与编码规范、变量与四大数据类型，以及 if-else、while 循环与 break/continue 流程控制。</p>
+                        <div class="tl-tags">
+                            <span class="chip">Python</span><span class="chip">基础语法</span>
+                            <span class="chip">循环</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <p class="blog-note">
+                更多文章与最新更新，请访问
+                <a href="https://blog.csdn.net/print_zlc" target="_blank" rel="noopener">CSDN 主页 →</a>
+            </p>
+        </div>
+    </section>
+</main>
+
+<!-- ================= 页脚 ================= -->
+<footer class="footer">
+    <div class="footer-inner">
+        <span>© <span id="year"></span> 邹理财 · 电子信息工程 / 嵌入式 & Python</span>
+        <div class="footer-links">
+            <a href="https://github.com/print_zlc" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://blog.csdn.net/print_zlc" target="_blank" rel="noopener">CSDN</a>
+            <a href="#" data-contact="email" aria-label="邮箱" title="点击给邹理财发邮件">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
+            </a>
+            <a href="#" data-contact="phone" aria-label="电话" title="点击拨打邹理财的电话">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2Z" stroke-linejoin="round"/></svg>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<!-- ================= 搜索弹层 ================= -->
+<div class="search-mask" id="searchMask">
+    <div class="search-panel">
+        <input class="search-input" id="searchInput" type="text" placeholder="搜索站内内容：文章 / 项目 / 技能…">
+        <div class="search-results" id="searchResults"></div>
+    </div>
+</div>
+
+<button id="backTop" aria-label="回到顶部">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<script src="js/background.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>

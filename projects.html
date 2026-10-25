@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>项目 · 邹理财</title>
+<meta name="description" content="邹理财的项目作品：会员管理系统、51 单片机智能密码门禁、智能循迹避障小车。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="项目 · 邹理财">
+<meta property="og:description" content="从命令行软件到单片机硬件：会员管理系统、51 密码门禁、智能循迹避障小车。">
+<meta property="og:image" content="images/cover-door.jpg">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>(function(){var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches){t="dark";}if(t==="dark"){document.documentElement.setAttribute("data-theme","dark");}})();</script>
+</head>
+<body>
+
+<!-- 顶部滚动进度条 -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+<!-- ================= 顶部导航 ================= -->
+<header class="nav">
+    <div class="nav-inner">
+        <a class="brand" href="index.html">
+            <span class="brand-mark">邹</span>
+            邹理财
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">首页</a>
+            <a href="projects.html" class="active">项目</a>
+            <a href="blog.html">博客</a>
+            <a href="about.html">关于</a>
+        </nav>
+
+        <div class="nav-tools">
+            <button class="icon-btn" id="searchBtn" title="搜索文章" aria-label="搜索">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <button class="icon-btn" id="themeBtn" title="切换深浅色" aria-label="切换主题">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke-linejoin="round"/></svg>
+            </button>
+            <a class="icon-btn" href="https://github.com/print_zlc" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.72.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/>
+                </svg>
+            </a>
+            <a class="icon-btn" href="https://blog.csdn.net/print_zlc" target="_blank" rel="noopener" title="CSDN" aria-label="CSDN">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                    <path d="M4 5h9M4 12h7M4 19h9"/><path d="m15.5 8.5 3 3-3 3"/>
+                </svg>
+            </a>
+            <button class="icon-btn nav-toggle" id="navToggle" aria-label="展开菜单">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                    <path d="M4 7h16M4 12h16M4 17h16"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="page-head">
+        <div class="wrap">
+            <h1>项目</h1>
+            <p>从命令行软件到单片机硬件，三个自己完整做完的项目。</p>
+        </div>
+    </section>
+
+    <!-- ================= 项目速览 ================= -->
+    <section class="section">
+        <div class="wrap">
+            <div class="project-grid">
+                <article class="project-card">
+                    <div class="project-cover">
+                        <img src="images/cover-member.jpg" alt="会员管理系统在终端里的运行界面" loading="lazy" width="1000" height="683">
+                    </div>
+                    <div class="project-top">
+                        <h3>会员管理系统</h3>
+                        <span class="status">2026.09</span>
+                    </div>
+                    <p>Python 命令行会员管理工具，支持增删改查与 JSON 持久化。</p>
+                    <div class="stack">
+                        <span class="chip">Python</span><span class="chip">列表 / 字典</span><span class="chip">文件读写</span>
+                    </div>
+                    <div class="project-links"><a href="#p-member">查看详情 →</a></div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-cover">
+                        <img src="images/cover-door.jpg" alt="51 单片机智能密码门禁实物：开发板、矩阵键盘与 LCD1602" loading="lazy" width="1000" height="683">
+                    </div>
+                    <div class="project-top">
+                        <h3>51 单片机智能密码门禁</h3>
+                        <span class="status">2026.03</span>
+                    </div>
+                    <p>STC89C52 + 矩阵键盘 + LCD1602，完成密码校验与开锁控制。</p>
+                    <div class="stack">
+                        <span class="chip">C</span><span class="chip">STC89C52</span><span class="chip">LCD1602</span><span class="chip">矩阵按键</span>
+                    </div>
+                    <div class="project-links"><a href="#p-door">查看详情 →</a></div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-cover">
+                        <img class="cover-car" src="images/car-1.jpg" alt="智能循迹避障小车在沙盘道路上测试" loading="lazy" width="680" height="1209">
+                    </div>
+                    <div class="project-top">
+                        <h3>智能循迹避障小车</h3>
+                        <span class="status">2025.04</span>
+                    </div>
+                    <p>红外循迹 + 超声波避障双模式小车，L298N 驱动电机。</p>
+                    <div class="stack">
+                        <span class="chip">C</span><span class="chip">51 / STM32</span><span class="chip">L298N</span><span class="chip">传感器</span>
+                    </div>
+                    <div class="project-links"><a href="#p-car">查看详情 →</a></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 项目详情 ================= -->
+    <section class="section">
+        <div class="wrap-narrow">
+
+            <article class="prose project-detail" id="p-member">
+            <h2>会员管理系统</h2>
+            <p><strong>时间：</strong>2026.09　<strong>类型：</strong>个人项目　<strong>技术栈：</strong>Python · 列表 / 字典 · 文件读写 · 命令行</p>
+
+            <h3>项目背景</h3>
+            <p>学习完 Python 基础语法后，想用一个完整的小工具把「数据结构 + 文件持久化 + 命令行交互」串起来，而不是停留在单个知识点的练习题上。</p>
+
+            <h3>主要功能</h3>
+            <ul>
+                <li>会员信息录入：姓名、电话、等级、积分等字段</li>
+                <li>查看全部会员、按姓名查询、修改与删除</li>
+                <li>保存到本地文件，下次启动自动读取，数据不丢失</li>
+                <li>各功能内部支持连续操作，输入 0 返回主菜单</li>
+            </ul>
+
+            <h3>我的工作</h3>
+            <p>用列表保存会员、用字典保存字段；主菜单用 <code>while</code> 循环和 <code>if/elif</code> 调度；增删改查各自封装成独立函数，查询逻辑抽成公共函数复用；加入输入校验与异常处理，避免非法输入导致程序崩溃。</p>
+
+            <h3>收获</h3>
+            <p>理解了「主程序 / 功能模块 / 数据存储」的分层写法，也第一次真正体会到：把重复逻辑抽成函数，代码会短很多，改起来也更容易。</p>
+            </article>
+
+            <article class="prose project-detail" id="p-door">
+            <h2>51 单片机智能密码门禁</h2>
+            <p><strong>时间：</strong>2026.03　<strong>类型：</strong>课程设计　<strong>技术栈：</strong>C · STC89C52 · LCD1602 · 4×4 矩阵键盘</p>
+
+            <h3>项目背景</h3>
+            <p>以 STC89C52 为主控做一套电子密码门禁，替代传统钥匙，练习键盘扫描、液晶显示与状态控制的完整硬件链路。</p>
+
+            <h3>主要功能</h3>
+            <ul>
+                <li>矩阵键盘输入密码，LCD1602 实时显示输入状态（用 * 掩码）</li>
+                <li>密码正确则驱动开锁，播报提示音</li>
+                <li>密码错误累计计数，连续错误后锁定一段时间并报警</li>
+                <li>支持在管理员模式下修改密码</li>
+            </ul>
+
+            <h3>我的工作</h3>
+            <p>负责硬件接线与程序编写：实现 4×4 矩阵键盘的行列扫描和按键消抖；按 LCD1602 的指令/数据时序编写显示驱动；用状态机管理「输入 → 校验 → 开锁 / 锁定」的流程。</p>
+
+            <h3>收获</h3>
+            <p>从原理图、面包板到实物调试全部走了一遍，学会了看时序图、排查引脚接触不良和上拉电阻这类「代码没错但硬件不工作」的问题。</p>
+            </article>
+
+            <article class="prose project-detail" id="p-car">
+            <h2>智能循迹避障小车</h2>
+            <p><strong>时间：</strong>2025.04　<strong>类型：</strong>课程设计　<strong>技术栈：</strong>C · 51 / STM32 · L298N · 红外 / 超声波传感器</p>
+
+            <div class="gallery">
+                <figure>
+                    <img src="images/car-1.jpg" alt="小车在沙盘道路上的俯拍图" loading="lazy" width="680" height="1209">
+                    <figcaption>整车外观与场地测试（俯拍）</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/car-2.jpg" alt="小车沿沙盘道路行驶的实拍图" loading="lazy" width="680" height="1210">
+                    <figcaption>循迹行驶测试</figcaption>
+                </figure>
+            </div>
+
+            <h3>项目背景</h3>
+            <p>做一台能自己沿黑线行驶、遇到障碍物能绕开的小车，把传感器采样、电机控制和决策逻辑整合到一个系统里。</p>
+
+            <h3>主要功能</h3>
+            <ul>
+                <li>循迹模式：红外传感器识别黑线，自动修正左右轮速度差保持沿线行驶</li>
+                <li>避障模式：超声波测距，距离小于阈值时转向绕行</li>
+                <li>通过 PWM 调节占空比控制车速，转弯更平顺</li>
+            </ul>
+
+            <h3>我的工作</h3>
+            <p>完成传感器采样与阈值判断、L298N 电机驱动、PWM 调速以及循迹 / 避障两种模式的切换逻辑，并反复上车调试参数。</p>
+
+            <h3>收获</h3>
+            <p>认识到控制逻辑不能只靠「理想值」：传感器有噪声、地面反光会影响红外判断，必须留出容错和滤波，小车才能跑稳。</p>
+
+            <p>项目的学习复盘与技术细节，都记录在 <a href="blog.html">技术博客</a> 里；源码与演示视频可通过 <a href="about.html">联系方式</a> 获取。</p>
+            </article>
+        </div>
+    </section>
+</main>
+
+<!-- ================= 页脚 ================= -->
+<footer class="footer">
+    <div class="footer-inner">
+        <span>© <span id="year"></span> 邹理财 · 电子信息工程 / 嵌入式 & Python</span>
+        <div class="footer-links">
+            <a href="https://github.com/print_zlc" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://blog.csdn.net/print_zlc" target="_blank" rel="noopener">CSDN</a>
+            <a href="#" data-contact="email" aria-label="邮箱" title="点击给邹理财发邮件">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
+            </a>
+            <a href="#" data-contact="phone" aria-label="电话" title="点击拨打邹理财的电话">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2Z" stroke-linejoin="round"/></svg>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<!-- ================= 搜索弹层 ================= -->
+<div class="search-mask" id="searchMask">
+    <div class="search-panel">
+        <input class="search-input" id="searchInput" type="text" placeholder="搜索站内内容：文章 / 项目 / 技能…">
+        <div class="search-results" id="searchResults"></div>
+    </div>
+</div>
+
+<button id="backTop" aria-label="回到顶部">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<script src="js/background.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>

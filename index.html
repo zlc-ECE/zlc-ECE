@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>邹理财 · 电子信息工程在读 / 嵌入式 & Python</title>
+<meta name="description" content="邹理财的个人主页：重庆邮电大学移通学院电子信息工程在读，嵌入式与 Python 开发方向，记录项目与 CSDN 技术文章。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="邹理财 · 电子信息工程在读 / 嵌入式 & Python">
+<meta property="og:description" content="电子信息工程在读，做过 51 单片机门禁与循迹小车，也用 Python 写工具、记博客。">
+<meta property="og:image" content="images/avatar.jpg">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>(function(){var t=localStorage.getItem("theme");if(!t&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches){t="dark";}if(t==="dark"){document.documentElement.setAttribute("data-theme","dark");}})();</script>
+</head>
+<body>
+
+<!-- 顶部滚动进度条 -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- 动态粒子背景画布 -->
+<canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+<!-- ================= 顶部导航 ================= -->
+<header class="nav">
+    <div class="nav-inner">
+        <a class="brand" href="index.html">
+            <span class="brand-mark">邹</span>
+            邹理财
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html" class="active">首页</a>
+            <a href="projects.html">项目</a>
+            <a href="blog.html">博客</a>
+            <a href="about.html">关于</a>
+        </nav>
+
+        <div class="nav-tools">
+            <button class="icon-btn" id="searchBtn" title="搜索文章" aria-label="搜索">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <button class="icon-btn" id="themeBtn" title="切换深浅色" aria-label="切换主题">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke-linejoin="round"/></svg>
+            </button>
+            <a class="icon-btn" href="https://github.com/print_zlc" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.72.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/>
+                </svg>
+            </a>
+            <a class="icon-btn" href="https://blog.csdn.net/print_zlc" target="_blank" rel="noopener" title="CSDN" aria-label="CSDN">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                    <path d="M4 5h9M4 12h7M4 19h9"/><path d="m15.5 8.5 3 3-3 3"/>
+                </svg>
+            </a>
+            <button class="icon-btn nav-toggle" id="navToggle" aria-label="展开菜单">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                    <path d="M4 7h16M4 12h16M4 17h16"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- ================= 首屏 ================= -->
+    <section class="hero">
+        <div class="wrap">
+            <div class="hero-avatar" id="heroAvatar" title="点我转一圈">
+                <img src="images/avatar.jpg" alt="邹理财的头像" width="240" height="240">
+            </div>
+            <span class="badge"><span class="bolt">⚡</span> 你好，我是 邹理财</span>
+            <h1>电子信息工程在读<br>用<em>代码</em>把想法跑起来</h1>
+            <p class="hero-sub" data-typewriter>
+                重庆邮电大学移通学院 · 电子信息工程（2023—2027）。折腾 51 单片机与 Python，
+                也在把每周的学习和踩坑写成技术博客。
+            </p>
+            <div class="btn-row">
+                <a class="btn btn-primary" href="projects.html">浏览项目
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+                <a class="btn btn-ghost" href="blog.html">技术博客</a>
+                <a class="btn btn-ghost" href="about.html">关于我</a>
+                <a class="btn btn-ghost" href="assets/resume.pdf" download="邹理财-简历.pdf">
+                    下载简历
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+                </a>
+            </div>
+            <div class="hero-meta">
+                <span><b data-stat="projects">3</b> 个项目</span>
+                <span><b data-stat="posts">6</b> 篇 CSDN 文章</span>
+                <span><b data-stat="practices">4</b> 段实践经历</span>
+                <span>专业排名前 <b data-stat="rank">8</b>%</span>
+            </div>
+            <div class="status-line">
+                <span>📍 重庆</span>
+                <span>🕐 现在 <b id="nowTime">--:--</b></span>
+                <span>📚 正在学 FastAPI</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 精选项目 ================= -->
+    <section class="section">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>精选项目</h2>
+                <a class="more" href="projects.html">查看全部 →</a>
+            </div>
+
+            <div class="project-grid">
+                <article class="project-card">
+                    <div class="project-cover">
+                        <img src="images/cover-member.jpg" alt="会员管理系统在终端里的运行界面" loading="lazy" width="1000" height="683">
+                    </div>
+                    <div class="project-top">
+                        <h3>会员管理系统</h3>
+                        <span class="status">已完成</span>
+                    </div>
+                    <p>Python 命令行会员信息管理工具：新增、查询、修改、删除会员，数据落盘保存，重启后可恢复。</p>
+                    <div class="stack">
+                        <span class="chip">Python</span><span class="chip">列表 / 字典</span>
+                        <span class="chip">文件读写</span><span class="chip">命令行</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="projects.html#p-member">项目详情 →</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-cover">
+                        <img src="images/cover-door.jpg" alt="51 单片机智能密码门禁实物：开发板、矩阵键盘与 LCD1602" loading="lazy" width="1000" height="683">
+                    </div>
+                    <div class="project-top">
+                        <h3>51 单片机智能密码门禁</h3>
+                        <span class="status">已完成</span>
+                    </div>
+                    <p>STC89C52 主控 + 矩阵键盘输入 + LCD1602 显示，实现密码校验、错误锁定与开锁控制。</p>
+                    <div class="stack">
+                        <span class="chip">C</span><span class="chip">STC89C52</span>
+                        <span class="chip">LCD1602</span><span class="chip">矩阵按键</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="projects.html#p-door">项目详情 →</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-cover">
+                        <img class="cover-car" src="images/car-1.jpg" alt="智能循迹避障小车在沙盘道路上测试" loading="lazy" width="680" height="1209">
+                    </div>
+                    <div class="project-top">
+                        <h3>智能循迹避障小车</h3>
+                        <span class="status">已完成</span>
+                    </div>
+                    <p>红外循迹 + 超声波避障双模式小车，L298N 驱动电机，完成传感器采样与运动决策。</p>
+                    <div class="stack">
+                        <span class="chip">C</span><span class="chip">51 / STM32</span>
+                        <span class="chip">L298N</span><span class="chip">传感器</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="projects.html#p-car">项目详情 →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 最新技术文章 ================= -->
+    <section class="section">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>最新技术文章</h2>
+                <a class="more" href="blog.html">查看全部 →</a>
+            </div>
+
+            <div class="post-list">
+                <a class="post-row is-latest" href="https://blog.csdn.net/print_zlc/article/details/169063188" target="_blank" rel="noopener">
+                    <span class="post-date">2026-10-25</span>
+                    <div class="post-main">
+                        <h3>【HTML+CSS+JS】前端入门第一周：从标签到九宫格，我把踩过的坑全记下来了</h3>
+                        <p>标签语义、选择器、盒模型、Flex/Grid 布局与 DOM 操作，以及路径、视口、嵌套那些坑。</p>
+                    </div>
+                    <div class="post-tags"><span class="chip">前端</span><span class="chip">HTML/CSS/JS</span></div>
+                </a>
+
+                <a class="post-row" href="https://blog.csdn.net/print_zlc/article/details/168247085" target="_blank" rel="noopener">
+                    <span class="post-date">2026-10-17</span>
+                    <div class="post-main">
+                        <h3>【Python】类与对象、大模型 API 调用与 FastAPI 后端开发</h3>
+                        <p>封装继承、多轮对话、GET/POST 接口与 Pydantic 校验，落到一个网页版 AI 对话小助手。</p>
+                    </div>
+                    <div class="post-tags"><span class="chip">Python</span><span class="chip">FastAPI</span></div>
+                </a>
+
+                <a class="post-row" href="https://blog.csdn.net/print_zlc/article/details/167587743" target="_blank" rel="noopener">
+                    <span class="post-date">2026-10-11</span>
+                    <div class="post-main">
+                        <h3>大模型与 AI 智能体学习笔记：从 API 调用到 Ollama 本地部署</h3>
+                        <p>参数、Token、上下文窗口，通义千问 API 调用，以及用 Ollama 把模型跑在本地。</p>
+                    </div>
+                    <div class="post-tags"><span class="chip">大模型</span><span class="chip">AI 智能体</span></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 技能方向 ================= -->
+    <section class="section">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>我在学什么</h2>
+                <a class="more" href="about.html">完整技能栈 →</a>
+            </div>
+
+            <div class="skill-list">
+                <div class="skill-item"><b>嵌入式开发</b><span>能独立完成 51 单片机小系统：矩阵键盘扫描、LCD1602 显示、传感器采样与电机驱动</span></div>
+                <div class="skill-item"><b>Python 开发</b><span>能独立完成命令行管理系统：面向对象建模、JSON 持久化、增删改查与异常处理</span></div>
+                <div class="skill-item"><b>前端基础</b><span>能独立完成响应式静态站点：语义化 HTML、Flex / Grid 布局、原生 JavaScript 交互</span></div>
+                <div class="skill-item"><b>AI 应用</b><span>能调用大模型 API 完成多轮对话页面，用 FastAPI 封装接口，并用 Ollama 在本地运行模型</span></div>
+            </div>
+
+            <div class="gh-card" id="ghCard">
+                <img src="https://github-readme-stats.vercel.app/api?username=print_zlc&amp;show_icons=true&amp;hide_border=true&amp;locale=cn&amp;theme=default"
+                     alt="print_zlc 的 GitHub 活跃度统计" loading="lazy" width="467" height="195"
+                     onerror="this.parentNode.classList.add('is-error')">
+                <p class="gh-fallback">GitHub 数据卡暂时没加载出来，可以直接看 <a href="https://github.com/print_zlc" target="_blank" rel="noopener">github.com/print_zlc</a></p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- ================= 页脚 ================= -->
+<footer class="footer">
+    <div class="footer-inner">
+        <span>© <span id="year"></span> 邹理财 · 电子信息工程 / 嵌入式 & Python</span>
+        <div class="footer-links">
+            <a href="https://github.com/print_zlc" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://blog.csdn.net/print_zlc" target="_blank" rel="noopener">CSDN</a>
+            <a href="#" data-contact="email" aria-label="邮箱" title="点击给邹理财发邮件">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>
+            </a>
+            <a href="#" data-contact="phone" aria-label="电话" title="点击拨打邹理财的电话">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2Z" stroke-linejoin="round"/></svg>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<!-- ================= 搜索弹层 ================= -->
+<div class="search-mask" id="searchMask">
+    <div class="search-panel">
+        <input class="search-input" id="searchInput" type="text" placeholder="搜索站内内容：文章 / 项目 / 技能…">
+        <div class="search-results" id="searchResults"></div>
+    </div>
+</div>
+
+<button id="backTop" aria-label="回到顶部">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<script src="js/background.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
