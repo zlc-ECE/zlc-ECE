@@ -70,6 +70,7 @@
         <div class="wrap">
             <div class="hero-avatar" id="heroAvatar" title="点我转一圈">
                 <img src="images/avatar.jpg" alt="邹理财的头像" width="240" height="240">
+                <div class="avatar-bubble" id="avatarBubble" role="status" aria-live="polite">🌀 连点两下！别转啦，再转就晕了</div>
             </div>
             <span class="badge"><span class="bolt">⚡</span> 你好，我是 邹理财</span>
             <h1>电子信息工程在读<br>用<em>代码</em>把想法跑起来</h1>
@@ -105,13 +106,13 @@
     <!-- ================= 精选项目 ================= -->
     <section class="section">
         <div class="wrap">
-            <div class="section-head">
+            <div class="section-head reveal">
                 <h2>精选项目</h2>
                 <a class="more" href="projects.html">查看全部 →</a>
             </div>
 
             <div class="project-grid">
-                <article class="project-card">
+                <article class="project-card reveal">
                     <div class="project-cover">
                         <img src="images/cover-member.jpg" alt="会员管理系统在终端里的运行界面" loading="lazy" width="1000" height="683">
                     </div>
@@ -120,16 +121,22 @@
                         <span class="status">已完成</span>
                     </div>
                     <p>Python 命令行会员信息管理工具：新增、查询、修改、删除会员，数据落盘保存，重启后可恢复。</p>
+                    <span class="card-hint">▾ 悬停展开细节</span>
                     <div class="stack">
                         <span class="chip">Python</span><span class="chip">列表 / 字典</span>
                         <span class="chip">文件读写</span><span class="chip">命令行</span>
+                    </div>
+                    <div class="project-more">
+                        <p><b>做了什么：</b>录入 / 浏览 / 检索 / 删除四大模块，多层菜单驱动，异常输入自动拦截。</p>
+                        <p><b>用了什么：</b>字典存会员对象、列表统一管理，JSON 文件落盘，模块化函数设计。</p>
+                        <p><b>解决了什么：</b>纸质登记易丢易重，查找从翻本子变成秒级检索，准确率 100%。</p>
                     </div>
                     <div class="project-links">
                         <a href="projects.html#p-member">项目详情 →</a>
                     </div>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card reveal">
                     <div class="project-cover">
                         <img src="images/cover-door.jpg" alt="51 单片机智能密码门禁实物：开发板、矩阵键盘与 LCD1602" loading="lazy" width="1000" height="683">
                     </div>
@@ -138,16 +145,22 @@
                         <span class="status">已完成</span>
                     </div>
                     <p>STC89C52 主控 + 矩阵键盘输入 + LCD1602 显示，实现密码校验、错误锁定与开锁控制。</p>
+                    <span class="card-hint">▾ 悬停展开细节</span>
                     <div class="stack">
                         <span class="chip">C</span><span class="chip">STC89C52</span>
                         <span class="chip">LCD1602</span><span class="chip">矩阵按键</span>
+                    </div>
+                    <div class="project-more">
+                        <p><b>做了什么：</b>6 位密码校验、错码声光报警、连续 3 次输错自动锁定键盘。</p>
+                        <p><b>用了什么：</b>C 语言模块化驱动：按键消抖扫描、LCD 显示、密码存储与校验。</p>
+                        <p><b>解决了什么：</b>机械钥匙易丢、无记录可查，用几十元成本做出可演示的电控门锁。</p>
                     </div>
                     <div class="project-links">
                         <a href="projects.html#p-door">项目详情 →</a>
                     </div>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card reveal">
                     <div class="project-cover">
                         <img class="cover-car" src="images/car-1.jpg" alt="智能循迹避障小车在沙盘道路上测试" loading="lazy" width="680" height="1209">
                     </div>
@@ -156,9 +169,15 @@
                         <span class="status">已完成</span>
                     </div>
                     <p>红外循迹 + 超声波避障双模式小车，L298N 驱动电机，完成传感器采样与运动决策。</p>
+                    <span class="card-hint">▾ 悬停展开细节</span>
                     <div class="stack">
                         <span class="chip">C</span><span class="chip">51 / STM32</span>
                         <span class="chip">L298N</span><span class="chip">传感器</span>
+                    </div>
+                    <div class="project-more">
+                        <p><b>做了什么：</b>黑线循迹 + 超声波避障双模式，PWM 调速，遇障停车绕行。</p>
+                        <p><b>用了什么：</b>红外循迹模块、超声波测距、L298N 电机驱动，C 语言模块化编程。</p>
+                        <p><b>解决了什么：</b>标定检测阈值与调速参数后，小车在沙盘上稳定跑完全程不脱轨。</p>
                     </div>
                     <div class="project-links">
                         <a href="projects.html#p-car">项目详情 →</a>
@@ -171,13 +190,13 @@
     <!-- ================= 最新技术文章 ================= -->
     <section class="section">
         <div class="wrap">
-            <div class="section-head">
+            <div class="section-head reveal">
                 <h2>最新技术文章</h2>
                 <a class="more" href="blog.html">查看全部 →</a>
             </div>
 
             <div class="post-list">
-                <a class="post-row is-latest" href="https://blog.csdn.net/print_zlc/article/details/169063188" target="_blank" rel="noopener">
+                <a class="post-row is-latest reveal" href="https://blog.csdn.net/print_zlc/article/details/169063188" target="_blank" rel="noopener">
                     <span class="post-date">2026-10-25</span>
                     <div class="post-main">
                         <h3>【HTML+CSS+JS】前端入门第一周：从标签到九宫格，我把踩过的坑全记下来了</h3>
@@ -186,7 +205,7 @@
                     <div class="post-tags"><span class="chip">前端</span><span class="chip">HTML/CSS/JS</span></div>
                 </a>
 
-                <a class="post-row" href="https://blog.csdn.net/print_zlc/article/details/168247085" target="_blank" rel="noopener">
+                <a class="post-row reveal" href="https://blog.csdn.net/print_zlc/article/details/168247085" target="_blank" rel="noopener">
                     <span class="post-date">2026-10-17</span>
                     <div class="post-main">
                         <h3>【Python】类与对象、大模型 API 调用与 FastAPI 后端开发</h3>
@@ -195,7 +214,7 @@
                     <div class="post-tags"><span class="chip">Python</span><span class="chip">FastAPI</span></div>
                 </a>
 
-                <a class="post-row" href="https://blog.csdn.net/print_zlc/article/details/167587743" target="_blank" rel="noopener">
+                <a class="post-row reveal" href="https://blog.csdn.net/print_zlc/article/details/167587743" target="_blank" rel="noopener">
                     <span class="post-date">2026-10-11</span>
                     <div class="post-main">
                         <h3>大模型与 AI 智能体学习笔记：从 API 调用到 Ollama 本地部署</h3>
@@ -210,19 +229,43 @@
     <!-- ================= 技能方向 ================= -->
     <section class="section">
         <div class="wrap">
-            <div class="section-head">
+            <div class="section-head reveal">
                 <h2>我在学什么</h2>
                 <a class="more" href="about.html">完整技能栈 →</a>
             </div>
 
-            <div class="skill-list">
-                <div class="skill-item"><b>嵌入式开发</b><span>能独立完成 51 单片机小系统：矩阵键盘扫描、LCD1602 显示、传感器采样与电机驱动</span></div>
-                <div class="skill-item"><b>Python 开发</b><span>能独立完成命令行管理系统：面向对象建模、JSON 持久化、增删改查与异常处理</span></div>
-                <div class="skill-item"><b>前端基础</b><span>能独立完成响应式静态站点：语义化 HTML、Flex / Grid 布局、原生 JavaScript 交互</span></div>
-                <div class="skill-item"><b>AI 应用</b><span>能调用大模型 API 完成多轮对话页面，用 FastAPI 封装接口，并用 Ollama 在本地运行模型</span></div>
+            <!-- 成长链路：不是技能清单，而是一条"我怎么一步步走到今天"的路线 -->
+            <div class="growth-chain">
+                <div class="chain-step reveal">
+                    <span class="chain-no">STEP 01</span>
+                    <div class="chain-head"><b>51 单片机</b><span class="chain-tag">硬件底层</span></div>
+                    <p class="chain-learn">看数据手册、搭电路、写驱动：矩阵键盘、LCD1602、传感器与电机就是这么点亮的。</p>
+                    <p class="chain-next">下一步 → 让流程自动跑起来</p>
+                </div>
+                <div class="chain-arrow" aria-hidden="true">➜</div>
+                <div class="chain-step reveal">
+                    <span class="chain-no">STEP 02</span>
+                    <div class="chain-head"><b>Python</b><span class="chain-tag">自动化</span></div>
+                    <p class="chain-learn">用面向对象建模 + JSON 落盘，独立做出命令行管理系统：增删改查、异常拦截都在行。</p>
+                    <p class="chain-next">下一步 → 让能力能被别人访问</p>
+                </div>
+                <div class="chain-arrow" aria-hidden="true">➜</div>
+                <div class="chain-step reveal">
+                    <span class="chain-no">STEP 03</span>
+                    <div class="chain-head"><b>FastAPI</b><span class="chain-tag">后端服务</span></div>
+                    <p class="chain-learn">顺手补上前端：语义化 HTML、Flex/Grid、原生 JS，再用 FastAPI 把能力封装成接口。</p>
+                    <p class="chain-next">下一步 → 接上更聪明的大脑</p>
+                </div>
+                <div class="chain-arrow" aria-hidden="true">➜</div>
+                <div class="chain-step reveal">
+                    <span class="chain-no">STEP 04</span>
+                    <div class="chain-head"><b>AI 应用</b><span class="chain-tag">智能化</span></div>
+                    <p class="chain-learn">调用大模型 API 做多轮对话，用 Ollama 把模型跑在本地——正在把 AI 塞进小工具里。</p>
+                    <p class="chain-next">下一站 · 持续施工中 🚧</p>
+                </div>
             </div>
 
-            <div class="gh-card" id="ghCard">
+            <div class="gh-card reveal" id="ghCard">
                 <img src="https://github-readme-stats.vercel.app/api?username=print_zlc&amp;show_icons=true&amp;hide_border=true&amp;locale=cn&amp;theme=default"
                      alt="print_zlc 的 GitHub 活跃度统计" loading="lazy" width="467" height="195"
                      onerror="this.parentNode.classList.add('is-error')">

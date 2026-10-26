@@ -157,11 +157,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    /* ---------- 3. 首屏头像：点一下转 360°（彩蛋） ---------- */
+    /* ---------- 3. 首屏头像：点一下转 360°，连点两下触发彩蛋提示 ---------- */
     var heroAvatar = document.getElementById("heroAvatar");
     if (heroAvatar) {
         var avatarImg = heroAvatar.querySelector("img");
+        var avatarBubble = document.getElementById("avatarBubble");   // 头像旁的聊天气泡
         var spinTimer = null;
+        var bubbleTimer = null;
+        var lastAvatarClick = 0;   // 上一次点击的时间，用来判断是不是“连点两下”
 
         // 转完之后去掉 spin 类，但不让它“倒着转回去”
         function resetSpin() {
@@ -178,6 +181,21 @@ document.addEventListener("DOMContentLoaded", function () {
             void heroAvatar.offsetWidth;   // 强制重排，连续点击也能重新播放
             heroAvatar.classList.add("spin");
             spinTimer = window.setTimeout(resetSpin, 700);  // 兜底：系统开了“减少动效”时也能复位
+
+            // 连点两下（间隔 600ms 内）：头像右边弹出聊天气泡，3 秒后自动消失
+            var now = Date.now();
+            if (now - lastAvatarClick < 600) {
+                if (avatarBubble) {
+                    avatarBubble.classList.add("show");
+                    window.clearTimeout(bubbleTimer);
+                    bubbleTimer = window.setTimeout(function () {
+                        avatarBubble.classList.remove("show");
+                    }, 3000);
+                }
+                lastAvatarClick = 0;   // 重置，避免第三、四下继续触发
+            } else {
+                lastAvatarClick = now;
+            }
         });
 
         if (avatarImg) {
@@ -300,7 +318,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var targetAttr = item.internal ? "" : ' target="_blank" rel="noopener"';
             html += '<a class="search-item" href="' + item.url + '"' + targetAttr + '>' +
                         '<b>' + item.title + '</b>' +
-                        '<span>' + item.date + ' · ' + item.tags.split(" ")[0] + '</span>' +
+                        '<span>' + item.date + ' · ' + item.tags.split(" ").slice(0, 2).join(" / ") + '</span>' +
                     '</a>';
         }
         searchResults.innerHTML = html;
@@ -436,7 +454,9 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
         console.log("%c你好，技术同行！👋 看到这里说明你也是爱捣鼓的人。",
             "color:#0d9488;font-size:14px;font-weight:bold;");
-        console.log("%c代码：github.com/print_zlc　笔记：blog.csdn.net/print_zlc\n%c↑↑↓↓←→←→ B A 有惊喜",
+        console.log("%c交个朋友 → 邮箱：2444691268@qq.com（首页邮箱图标也能找到我）",
+            "color:#0f766e;font-size:12.5px;");
+        console.log("%c代码：github.com/print_zlc　笔记：blog.csdn.net/print_zlc\n%c快捷键：D 切深色模式 · S 回到顶部 · ↑↑↓↓←→←→ B A 有惊喜",
             "color:#4b5563;font-size:12px;",
             "color:#9ca3af;font-size:11px;");
     } catch (err) { /* 个别浏览器禁用 console 时忽略 */ }
@@ -478,7 +498,39 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    /* ---------- 16. 留言区：配置好 GISCUS 后自动加载 ---------- */
+    /* ---------- 16. 快捷键：D 切换深色模式，S 回到顶部 ---------- */
+    document.addEventListener("keydown", function (e) {
+        var tag = e.target && e.target.tagName;
+        if (tag === "INPUT" || tag === "TEXTAREA") return;
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        var k = e.key ? e.key.toLowerCase() : "";
+        if (k === "d") {
+            if (themeBtn) themeBtn.click();   // 复用右上角按钮逻辑，图标与 localStorage 自动同步
+            showToast(localStorage.getItem("theme") === "dark" ? "🌙 已切到深色模式" : "☀️ 已切到浅色模式");
+        } else if (k === "s") {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            showToast("↑ 回到顶部");
+        }
+    });
+
+    /* ---------- 17. 滚动入场：.reveal 淡入 + 上浮（先给 html 加 js 标记，JS 失效时内容不会被藏住） ---------- */
+    document.documentElement.classList.add("js");
+    var revealEls = document.querySelectorAll(".reveal");
+    if (calmMotion || !window.IntersectionObserver) {
+        for (var rv = 0; rv < revealEls.length; rv++) revealEls[rv].classList.add("visible");
+    } else {
+        var revealObserver = new IntersectionObserver(function (entries) {
+            for (var r = 0; r < entries.length; r++) {
+                if (entries[r].isIntersecting) {
+                    entries[r].target.classList.add("visible");
+                    revealObserver.unobserve(entries[r].target);
+                }
+            }
+        }, { threshold: 0.15, rootMargin: "0px 0px -30px 0px" });
+        for (var r2 = 0; r2 < revealEls.length; r2++) revealObserver.observe(revealEls[r2]);
+    }
+
+    /* ---------- 18. 留言区：配置好 GISCUS 后自动加载 ---------- */
     var giscusBox = document.getElementById("giscusBox");
     if (giscusBox) {
         if (GISCUS.repo && GISCUS.repoId && GISCUS.categoryId) {

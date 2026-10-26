@@ -251,6 +251,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
     gap: 20px;
+    /* 卡片各自按内容高度排列：悬停展开某一张时，不会把同一行其他卡片一起拉高 */
+    align-items: start;
 }
 .project-card {
     display: flex;
@@ -280,9 +282,9 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     padding: 1px 9px;
     font-size: 12px;
     line-height: 1.7;
-    color: var(--text-2);
-    background: var(--bg-soft);
-    border: 1px solid var(--line);
+    color: var(--accent-dark);
+    background: var(--accent-soft);
+    border: 1px solid rgba(13, 148, 136, .22);
     border-radius: 6px;
     white-space: nowrap;
 }
@@ -290,7 +292,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .project-links a { color: var(--accent); font-weight: 500; }
 .project-links a:hover { text-decoration: underline; }
 
-/* 分类筛选按钮 */
+/* 分类筛选按钮：选中时有轻微弹一下的过渡，点起来更有反馈 */
 .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
 .filter-btn {
     padding: 6px 14px;
@@ -298,10 +300,23 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     color: var(--text-2);
     border: 1px solid var(--line);
     border-radius: 999px;
-    transition: all .15s;
+    transition: background .22s ease, color .22s ease, border-color .22s ease,
+                transform .18s ease, box-shadow .22s ease;
 }
 .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-.filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.filter-btn:active { transform: scale(.95); }
+.filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, .26);
+    animation: chipPop .3s cubic-bezier(.34, 1.56, .64, 1);
+}
+@keyframes chipPop {
+    0% { transform: scale(.92); }
+    60% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
 
 /* ---------- 时间轴（博客文章的左侧时间条） ---------- */
 .timeline { position: relative; padding-left: 38px; margin-top: 8px; }
@@ -447,7 +462,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     grid-template-columns: 170px 1fr;
     gap: 16px;
     padding: 14px 18px;
-    background: var(--bg-soft);
+    /* 底色与模糊统一走下方「玻璃拟态」分组，和文章卡片同色 */
     border: 1px solid var(--line);
     border-radius: 10px;
     font-size: 14.5px;
@@ -584,10 +599,12 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 /* 首屏头像：圆形照片，点一下转一圈（彩蛋） */
 .hero-avatar {
+    position: relative;   /* 气泡以头像为定位基准 */
     width: 92px; height: 92px;
     margin: 0 auto 18px;
     border-radius: 50%;
-    overflow: hidden;
+    /* 头像圆形裁剪交给里面的 img 自己做，这里放开 overflow，气泡才不会被裁掉 */
+    overflow: visible;
     cursor: pointer;
     box-shadow: 0 0 0 5px var(--accent-soft), var(--shadow);
     animation: avatarFloat 7s ease-in-out infinite;
@@ -604,6 +621,57 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 @keyframes avatarFloat {
     0%, 100% { transform: translateY(0); }
     50%      { transform: translateY(-5px); }
+}
+
+/* 点头像两下：从头像右侧弹出聊天气泡（3 秒后自动消失） */
+.avatar-bubble {
+    position: absolute;
+    left: calc(100% + 14px);
+    top: 0;
+    width: max-content;
+    max-width: 210px;
+    padding: 9px 13px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--accent-dark);
+    background: var(--accent-soft);
+    border: 1px solid rgba(13, 148, 136, .22);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    white-space: nowrap;
+    opacity: 0;
+    transform: scale(.6) translateY(6px);
+    transform-origin: left center;
+    pointer-events: none;
+    transition: opacity .22s ease, transform .25s cubic-bezier(.34, 1.56, .64, 1);
+    z-index: 6;
+}
+.avatar-bubble.show { opacity: 1; transform: scale(1) translateY(0); }
+/* 左侧小三角，指向头像 */
+.avatar-bubble::before {
+    content: "";
+    position: absolute;
+    left: -6px; top: 16px;
+    border: 6px solid transparent;
+    border-right-color: var(--accent-soft);
+}
+/* 窄屏：气泡改到头像正下方，小三角朝上 */
+@media (max-width: 720px) {
+    .avatar-bubble {
+        left: 50%;
+        top: calc(100% + 12px);
+        white-space: normal;
+        text-align: center;
+        transform: translateX(-50%) scale(.6) translateY(-4px);
+        transform-origin: center top;
+    }
+    .avatar-bubble.show { transform: translateX(-50%) scale(1) translateY(0); }
+    .avatar-bubble::before {
+        left: 50%; top: -6px;
+        margin-left: -6px;
+        border-right-color: transparent;
+        border-bottom-color: var(--accent-soft);
+    }
 }
 
 /* 项目卡片顶部的实拍图 */
@@ -662,8 +730,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 }
 
 /* ============================================================
-   玻璃拟态：卡片半透明 + 背景模糊，让卡片和粒子背景融在一起
-   透明度不低于 .78，保证正文压在高光上依然看得清
+   玻璃拟态：卡片淡青绿半透明 + 背景模糊，让卡片和粒子背景融在一起
+   底色跟随主色系，悬停时不会跳成一块死白
    ============================================================ */
 .project-card,
 .post-row,
@@ -672,8 +740,10 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .contact-card,
 .hero-meta span,
 .search-panel,
-.comments {
-    background: rgba(255, 255, 255, .80);
+.comments,
+.skill-item,
+.chain-step {
+    background: rgba(236, 253, 249, .72);
     -webkit-backdrop-filter: blur(14px) saturate(140%);
     backdrop-filter: blur(14px) saturate(140%);
 }
@@ -684,13 +754,15 @@ html[data-theme="dark"] .prose,
 html[data-theme="dark"] .contact-card,
 html[data-theme="dark"] .hero-meta span,
 html[data-theme="dark"] .search-panel,
-html[data-theme="dark"] .comments {
+html[data-theme="dark"] .comments,
+html[data-theme="dark"] .skill-item,
+html[data-theme="dark"] .chain-step {
     background: rgba(21, 24, 29, .80);
 }
 /* 不支持背景模糊的浏览器自动退回不透明卡片 */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     .project-card, .post-row, .tl-card, .prose, .contact-card,
-    .hero-meta span, .search-panel, .comments { background: var(--card); }
+    .hero-meta span, .search-panel, .comments, .skill-item, .chain-step { background: var(--card); }
 }
 
 /* ---------- 顶部滚动进度条 ---------- */
@@ -820,4 +892,112 @@ html[data-theme="dark"] .gh-card { background: rgba(21, 24, 29, .80); }
 }
 @media (max-width: 600px) {
     .post-date { padding-top: 0; }
+}
+
+/* ============================================================
+   新增（借鉴无人机站的 6 项优化）：
+   成长链路 / 项目卡悬停展开 / 滚动入场 reveal
+   说明：数字计数与顶部进度条此前已实现，无需改动
+   ============================================================ */
+
+/* ---------- 成长链路：STEP 01 → 04（体系化叙事） ---------- */
+.growth-chain { display: flex; align-items: stretch; gap: 8px; }
+.chain-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 16px 14px;
+    /* 底色与模糊统一走上方「玻璃拟态」分组，和文章卡片同色 */
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    transition: border-color .15s, box-shadow .2s, transform .15s;
+}
+.chain-step:hover {
+    border-color: rgba(13,148,136,.45);
+    box-shadow: var(--shadow);
+    transform: translateY(-3px);
+}
+.chain-no {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+}
+.chain-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.chain-head b { font-size: 15.5px; font-weight: 700; }
+.chain-tag {
+    padding: 1px 8px;
+    font-size: 11px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    border: 1px solid rgba(13,148,136,.22);
+    white-space: nowrap;
+}
+.chain-learn { font-size: 13px; color: var(--text-2); line-height: 1.7; flex: 1; }
+.chain-next { font-size: 12px; color: var(--accent); font-weight: 500; }
+.chain-arrow {
+    align-self: center;
+    color: var(--accent);
+    font-size: 18px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+@media (max-width: 860px) {
+    .growth-chain { flex-direction: column; gap: 6px; }
+    .chain-arrow { transform: rotate(90deg); text-align: center; padding: 2px 0; }
+}
+
+/* ---------- 项目卡片：悬停展开细节 ---------- */
+.card-hint {
+    display: block;
+    margin: -4px 0 10px;
+    font-size: 12px;
+    color: var(--muted);
+    transition: opacity .2s;
+}
+.project-card:hover .card-hint { opacity: 0; }
+.project-more {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-bottom: 0;
+    padding: 0 12px;
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    background: rgba(13, 148, 136, .07);
+    transition: max-height .32s ease, opacity .25s ease, padding .3s ease, margin .3s ease;
+}
+html[data-theme="dark"] .project-more { background: rgba(45, 212, 191, .08); }
+.project-more p { font-size: 12.8px; line-height: 1.7; margin: 0; }
+.project-more p + p { margin-top: 5px; }
+.project-more b { color: var(--accent-dark); }
+.project-card:hover .project-more,
+.project-card:focus-within .project-more {
+    max-height: 240px;
+    opacity: 1;
+    padding: 9px 12px;
+    margin-bottom: 14px;
+}
+
+/* ---------- 滚动入场：淡入 + 上浮（JS 先给 html 加 .js 标记才生效，JS 失效时内容照常显示） ---------- */
+html.js .reveal { opacity: 0; }
+html.js .reveal.visible {
+    opacity: 1;
+    animation: riseIn .55s cubic-bezier(.22, .61, .36, 1) both;
+}
+@keyframes riseIn {
+    from { opacity: 0; translate: 0 22px; }
+    to   { opacity: 1; translate: 0 0; }
+}
+/* 成长链路四步错峰入场 */
+html.js .growth-chain .chain-step:nth-child(3).visible { animation-delay: .08s; }
+html.js .growth-chain .chain-step:nth-child(5).visible { animation-delay: .16s; }
+html.js .growth-chain .chain-step:nth-child(7).visible { animation-delay: .24s; }
+/* 系统“减少动效”时直接显示，不做动画 */
+@media (prefers-reduced-motion: reduce) {
+    html.js .reveal { opacity: 1 !important; translate: none; }
+    html.js .reveal.visible { animation: none; }
 }
